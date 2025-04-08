@@ -3,6 +3,7 @@ package com.ait.springBootProject2;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class Library {
@@ -17,8 +18,8 @@ public class Library {
         books.add(b1);
     }
 
-    public void addBook(Book b){
-        books.add(b);
+    public String addBook(Book b){
+        return books.add(b) ? "Book Added" : "Failed Addition";
     }
 
     public void displayBooks(){
@@ -29,5 +30,29 @@ public class Library {
 
     public ArrayList<Book> getBooks(){
         return books;
+    }
+
+    public List<Book> searchAuthor(String author){
+        List<Book> foundbooks = new ArrayList<>();
+        for(Book b:books){
+            if(b.getAuthor().equals(author)) foundbooks.add(b);
+        }
+        return foundbooks;
+    }
+
+    public void updateBook(String title, Book b){
+        for(Book b1:books){
+            if(b1.getTitle().equals(title)){
+                b1.setPageNumbers(b.getPageNumbers());
+            }
+        }
+    }
+
+    public void deleteBookByTitle(String title){
+        for(Book b1:books){
+            if(b1.getTitle().equals(title)){
+                books.remove(b1);
+            }
+        }
     }
 }

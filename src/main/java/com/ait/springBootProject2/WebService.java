@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public class WebService {
 
-    @Autowired
+
     private Library lib;
 
     public WebService(Library lib) {
@@ -17,6 +17,11 @@ public class WebService {
     }
 
     public WebService() {
+    }
+
+    @Autowired
+    public void setLib(Library lib) {
+        this.lib = lib;
     }
 
     public Library getLib() {
@@ -27,7 +32,19 @@ public class WebService {
         return lib.getBooks();
     }
 
-    public void setLib(Library lib) {
-        this.lib = lib;
+    public String addBook(Book b){
+        return lib.addBook(b);
+    }
+
+    public List<Book> searchByAuthor(String author){
+        return lib.searchAuthor(author);
+    }
+
+    public void updateBook(String title, Book b){
+        lib.updateBook(title, b);
+    }
+
+    public void deleteBookByTitle(String title){
+        lib.deleteBookByTitle(title);
     }
 }

@@ -39,4 +39,24 @@ public class WebController {
     public void setService(WebService service) {
         this.service = service;
     }
+
+    @PostMapping("/books/add")
+    public String addBook(@RequestBody Book b){
+        return service.addBook(b);
+    }
+
+    @GetMapping("/search")
+    public List<Book> searchBookByAuthor(@RequestParam String author){
+        return service.searchByAuthor(author);
+    }
+
+    @PatchMapping("/books/update")
+    public void updateBook(@RequestParam String title, @RequestBody Book b){
+        service.updateBook(title,b);
+    }
+
+    @DeleteMapping("/books/delete/{title}/{author}")
+    public void deleteBook(@PathVariable String title, @PathVariable String author){
+        service.deleteBookByTitle(title);
+    }
 }
